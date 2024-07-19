@@ -44,24 +44,38 @@ docker compose exec web python manage.py test
    cd test-task-o-complex
    ```
 
-2. Сборка Docker образа:
+2. Создать свой `.env` file (пример файла):
+
+   ```sh
+   DEBUG=0
+   SECRET_KEY=YOUR_SECRET_KEY
+   DJANGO_ALLOWED_HOSTS=* 
+   POSTGRES_DB=postgres
+   POSTGRES_USER=postgres
+   POSTGRES_PASSWORD=postgres
+   REDIS_HOST=redis
+   REDIS_PORT=6379
+   REDIS_DB=0
+   ```
+   
+4. Сборка Docker образа:
    ```sh
    docker-compose build
    ```
 
-3. Запуск Docker контейнеров:
+5. Запуск Docker контейнеров:
 
    ```sh
    docker-compose up
    ```
 
-4. Применение миграций:
+6. Применение миграций:
 
    ```
    docker-compose exec web python manage.py migrate
    ```
 
-5. Доступ к приложению: Откройте веб-браузер и перейдите по адресу `http://localhost:80`.
+7. Доступ к приложению: Откройте веб-браузер и перейдите по адресу `http://localhost:80`.
 
 
 ## От себя
