@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<main>
+    <div class="input_container">
+        <input id="search_input" type="text" placeholder="Enter your city">  
+        <div id="suggestions"></div> 
+    </div>
+    {% if not weather_info %}
+        <div id="previous">
+            <div id="last_city"></div>
+            <input id="show_previous" type="submit" value="Yes">
+            <input id="close_previous" type="submit" value="No">
+        </div>
+    {% endif %}
+    
+    <div id="list">
+        {% if not weather_info %}
+            <div class="nocontent">No content available</div>
+        {% endif %}
+    </div>
+    
+    {% if weather_info %}
+        <div id="detail"></div>
+    {% endif %}
+    <script>
+        
+        if ('{{ weather_info }}'){
+
+            const weather_info = JSON.parse('{{ weather_info|escapejs }}');
+            const list = document.getElementById('list');
+            const detail = document.getElementById('detail');
+            const days = document.getElementsByClassName('day');
+              
+            var i = 0;
+            for (var key in weather_info){
+                list.innerHTML += `<div class="day" data-id="${i}">${key}</div>`;
+                i++;
+            }
+            days[0].classList.add('selected'); 
+
+            function setWeatherInfo(index){
+                const week_day = days[index].innerHTML;
+                const data = weather_info[week_day]
+                detail.innerHTML = '';
+
+                for (var time in data){
+                    const value = data[time];
+                    detail.innerHTML += `
+                    <div class="part">
+                        <div class="time">${time}</div>
+                        <div>
+                            <div class="stat"><i>Temperature:</i> ${value.temperature_2m}</div>
+                            <div class="stat"><i>Wind speed:</i> ${value.wind_speed_10m}</div>
+                            <div class="stat"><i>Relative humidity:</i> ${value.relative_humidity_2m}</div>
+                        </div>
+                    </div>
+                    `
+                }
+
+                var len = days.length;
+                for (i = 0; i < len; i++){
+                    days[i].classList.remove('selected');
+                    if (i == index){
+                        days[i].classList.add('selected');
+                    }
+                }                
+            };
+            setWeatherInfo(0);
+
+            var len = days.length;
+            for (i = 0; i < len; i++){
+                days[i].addEventListener('click', (event) => {
+                    const index = parseInt(event.target.dataset.id);
+                    setWeatherInfo(index);
+                })
+            }
+        }
+    </script>
+    <script src="{% static 'js/home.js' %}"></script>
+</main>
+{% endblock %}

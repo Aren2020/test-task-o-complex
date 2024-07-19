@@ -1,0 +1,36 @@
+services:
+  db:
+    image: postgres:14.5
+    restart: always
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    env_file:
+      - .env
+  
+  redis:
+    image: redis:7.0.4
+    ports:
+      - "6379:6379"
+
+  web:
+    build: .
+    working_dir: /code/weatherapp
+    command: ["gunicorn", "weatherapp.wsgi:application", "--bind", "0.0.0.0:8000"]
+    restart: "always"
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env 
+    depends_on:
+      - redis
+    
+  nginx:
+    image: nginx:1.23.1
+    restart: always
+    volumes:
+      - ./config/nginx:/etc/nginx/templates
+      - .:/code
+    ports:
+      - "80:80"

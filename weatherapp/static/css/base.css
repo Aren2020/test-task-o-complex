@@ -1,0 +1,164 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    position: absolute;
+    width: 40vw;
+    height: 80vh;
+    top: 10vh;
+    left: 30vw;
+    background-color: rgb(39, 39, 39);
+    opacity: 0.7;
+    border-radius: 10%;
+    box-shadow: 3px 3px 3px white;
+}
+
+.input_container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+input {
+    background-color: rgb(39, 39, 39);
+    border-bottom: 1px solid white;
+    border-right: 1px solid white;
+    color: white;
+    font-size: 16px;    
+}
+
+input:focus {
+    outline: none !important;
+    box-shadow: 1px 1px 1px white inset;
+}
+
+#search_input {
+    width: 30vw;
+    height: 40px;
+    border-radius: 15px;
+    padding-left: 15px;
+}
+
+
+#previous input {
+    width: 50px;
+    height: 30px;
+    border-radius: 5px;
+    margin-left: 2.5px;
+    margin-right: 2.5px;
+    transition: 0.3s;
+}
+
+#previous input:hover {
+    filter: brightness(150%);
+}
+
+#previous {
+    display: none;
+    align-items: center;
+    margin-left: 5vw;
+    color: white;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+#list {
+    display: flex;
+    overflow-x: scroll;
+    color: white;
+    font-size: 18px;
+    margin: 0 10px;
+    border-radius: 50px;
+    padding: 0 10px;
+    border-top: 1px solid white;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+#list::-webkit-scrollbar { 
+    display: none;
+}
+
+.day {
+    width: 10vw;
+    margin: 10px;
+    padding-bottom: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.day:hover {
+    text-shadow: 1px 1px 1px yellow;
+}
+
+.selected {
+    border-bottom: 1px solid white;
+}
+
+.nocontent {
+    width: 10vw;
+    margin: 10px;
+    padding-bottom: 5px;
+}
+
+#detail {
+    display: flex;
+    align-items: center;
+    color: white;
+    overflow-x: scroll;
+    margin: 50px 30px;
+    border-radius: 50px;
+    padding: 23px 10px;
+    padding-top: 50px;
+    border-bottom: 1px solid white;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+#detail::-webkit-scrollbar { 
+    display: none;
+}
+
+.part {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    margin: 0 3vw;
+    min-width: 300px;
+    justify-content: center;
+}
+
+.time {
+    font-size: 38px;
+    margin-bottom: 5px;
+}
+
+.stat {
+    margin: 5px 0;
+}
+
+#suggestions {
+    position: absolute;
+    background-color: rgb(39, 39, 39);
+    width: 30vw;
+    margin-top: 45px;
+    border: 1px solid white;
+    border-top: none;
+    border-radius: 0 0 5px 5px; /* Rounded corners on the bottom */
+    box-shadow: 0 7px 10px rgba(0, 0, 0); /* Drop shadow */
+}
+
+.suggestion {
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    transition: 0.3;
+}
+
+.suggestion:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Lighten on hover */
+}
