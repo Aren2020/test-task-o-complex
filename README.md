@@ -41,7 +41,7 @@ docker compose exec web python manage.py test
 
    ```sh
    git clone https://github.com/Aren2020/test-task-o-complex.git
-   cd test-task-o-comlex
+   cd test-task-o-complex
    ```
 
 2. Сборка Docker образа:
